@@ -4,12 +4,12 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	_ "github.com/lib/pq"
+	"github.com/malwhare/First-Go/internal"
 	"github.com/malwhare/First-Go/pkg/controllers"
 )
 
 func main() {
-	//db := internal.ConnectDB()
+	_ = internal.ConnectDB()
 
 	createRoutes()
 }

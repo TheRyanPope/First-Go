@@ -1,13 +1,10 @@
 package mocks
 
-import (
-	"github.com/google/uuid"
-	"github.com/malwhare/First-Go/pkg/models"
-)
+import "github.com/malwhare/First-Go/pkg/models"
 
 var Challengers = []models.Challenger{
 	{
-		Id:           uuid.New(),
+		Id:           int64(1),
 		Name:         "Doofus McGee",
 		CurrentRank:  "Last",
 		PreviousRank: "First",

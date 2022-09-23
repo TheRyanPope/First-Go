@@ -4,24 +4,27 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/malwhare/First-Go/pkg/handlers"
+	_ "github.com/lib/pq"
+	"github.com/malwhare/First-Go/pkg/controllers"
 )
 
 func main() {
+	//db := internal.ConnectDB()
+
 	createRoutes()
 }
 
 func createRoutes() {
 	router := mux.NewRouter()
 
-	router.HandleFunc("/pyramids/getPyramid", handlers.GetPyramid).Methods(http.MethodGet)
+	router.HandleFunc("/pyramids/getPyramid", controllers.GetPyramid).Methods(http.MethodGet)
 
-	router.HandleFunc("/challengers/create", handlers.CreateChallenger).Methods(http.MethodPost)
-	router.HandleFunc("/challengers/get/{id}", handlers.GetChallenger).Methods(http.MethodGet)
-	router.HandleFunc("/challengers/updateRank/{id}", handlers.UpdateChallengerRank).Methods(http.MethodPut)
-	router.HandleFunc("/challengers/updateName/{id}", handlers.UpdateChallengerName).Methods(http.MethodPut)
-	router.HandleFunc("/challengers/deactivate/{id}", handlers.DeactivateChallenger).Methods(http.MethodPut)
-	router.HandleFunc("/challengers/activate/{id}", handlers.ActivateChallenger).Methods(http.MethodPut)
+	router.HandleFunc("/challengers/create", controllers.CreateChallenger).Methods(http.MethodPost)
+	router.HandleFunc("/challengers/get/{id}", controllers.GetChallenger).Methods(http.MethodGet)
+	router.HandleFunc("/challengers/updateRank/{id}", controllers.UpdateChallengerRank).Methods(http.MethodPut)
+	router.HandleFunc("/challengers/updateName/{id}", controllers.UpdateChallengerName).Methods(http.MethodPut)
+	router.HandleFunc("/challengers/deactivate/{id}", controllers.DeactivateChallenger).Methods(http.MethodPut)
+	router.HandleFunc("/challengers/activate/{id}", controllers.ActivateChallenger).Methods(http.MethodPut)
 
 	http.ListenAndServe(":4000", router)
 }
